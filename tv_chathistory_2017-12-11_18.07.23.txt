@@ -1,0 +1,300 @@
+USER-THINK 6:07 PM
+I can hear you
+USER-THINK 6:07 PM
+can you hear me ?
+LENOVO-PC 6:07 PM
+no
+USER-THINK 6:08 PM
+ok lets just do it here
+USER-THINK 6:08 PM
+I can hear you, and my mic is working
+USER-THINK 6:08 PM
+but somehow it doesn't make a sound on your side
+LENOVO-PC 6:09 PM
+i was thinking, with the game to maybe use a randomizing for computer to selectbutton
+USER-THINK 6:09 PM
+yeah
+USER-THINK 6:09 PM
+I think that's the next step
+LENOVO-PC 6:09 PM
+om
+LENOVO-PC 6:09 PM
+ok
+USER-THINK 6:09 PM
+to make computer play on its own
+LENOVO-PC 6:09 PM
+yeah
+USER-THINK 6:09 PM
+so let's go into your code
+USER-THINK 6:10 PM
+ok
+USER-THINK 6:10 PM
+before we continue, any questions from last week ?
+LENOVO-PC 6:11 PM
+could i ask about sender as Button what it means again
+USER-THINK 6:12 PM
+it means, cast sender (which is of type object) as a Button
+LENOVO-PC 6:12 PM
+ok
+USER-THINK 6:12 PM
+if sender object is incidentally also a Button, you will get sender as a Button instance
+USER-THINK 6:13 PM
+if let's say sender is anything but a Button, e.g. a TextField, you would get a null
+USER-THINK 6:13 PM
+this is almost similar to
+
+Button btn = (Button) sender;
+USER-THINK 6:13 PM
+both are casting
+USER-THINK 6:13 PM
+but the latter will throw an  Exception instead
+LENOVO-PC 6:14 PM
+thanks
+USER-THINK 6:14 PM
+an Exception would be thrown if the types are incompatible when you do =  (Button) sender;
+USER-THINK 6:15 PM
+any other questions ?
+USER-THINK 6:15 PM
+a Dictionary is a collection, similar to a list
+USER-THINK 6:15 PM
+a list contains a set of objects
+USER-THINK 6:16 PM
+a dictionary is distinguished by its behavior in containing  key, value pairs
+LENOVO-PC 6:16 PM
+EventHandler is that the action of button cllicked
+USER-THINK 6:17 PM
+if you have a Dictionary<int, String>, you can store {1: "apple", 2: "banana", 3: "orange" }
+USER-THINK 6:17 PM
+in this case, we have { Button1 : EventHandler1, Button2: EventHandler2 }
+USER-THINK 6:17 PM
+and so on
+USER-THINK 6:18 PM
+the keys are of type Button
+USER-THINK 6:18 PM
+the values are of type EventHandlers
+USER-THINK 6:19 PM
+in this case we store the  EventHandler for each Button
+USER-THINK 6:20 PM
+this is where we are saying, for key btn1, store the EventHandler to the dictionary, with key btn1, and the value is the new EventHandler
+LENOVO-PC 6:20 PM
+what is an eventhandler
+USER-THINK 6:21 PM
+EventHandler is a delegate
+USER-THINK 6:21 PM
+it can store a function
+USER-THINK 6:21 PM
+in this case, the EventHandler stores function play_a_turn
+USER-THINK 6:22 PM
+first we create an EventHandler that points to play_a_turn
+USER-THINK 6:22 PM
+then we say, for this button, if I Click, then call the delegate function
+USER-THINK 6:22 PM
+which in this case calls play_a_turn
+USER-THINK 6:23 PM
+so every time you click, play_a_turn is executed
+LENOVO-PC 6:23 PM
+thats cool
+USER-THINK 6:23 PM
+you can see this behavior ... if we set a breakpoint
+USER-THINK 6:25 PM
+so play_a_turn has been executed
+USER-THINK 6:25 PM
+one more thing...
+USER-THINK 6:26 PM
+you can see under Watch
+USER-THINK 6:26 PM
+there are 9 pairs in the btns_evt_handlers dictionary
+USER-THINK 6:26 PM
+and for each item, you have a key & value pair
+USER-THINK 6:26 PM
+the type of the key is System.Windows.Forms.Button
+USER-THINK 6:27 PM
+the type of the value is a System.EventHandler
+USER-THINK 6:27 PM
+is that clear ?
+LENOVO-PC 6:28 PM
+yes thanks
+USER-THINK 6:28 PM
+each of the key is unique
+USER-THINK 6:28 PM
+that's a significant property of a dictionary
+LENOVO-PC 6:28 PM
+understand
+USER-THINK 6:28 PM
+the value can be non-unique
+USER-THINK 6:28 PM
+but in this particular case they are unique
+USER-THINK 6:29 PM
+we create one EventHandler for each Button
+USER-THINK 6:29 PM
+a total of 9 delegates
+USER-THINK 6:29 PM
+however, they all point to one function
+USER-THINK 6:30 PM
+that's slightly inaccurate
+USER-THINK 6:30 PM
+EventHandler is a delegate
+USER-THINK 6:30 PM
+you have 9 delegates here
+USER-THINK 6:30 PM
+each delegate points to the same method
+USER-THINK 6:31 PM
+yeap
+USER-THINK 6:31 PM
+that's better
+LENOVO-PC 6:31 PM
+can we look into computers turn in game
+USER-THINK 6:31 PM
+yeah
+USER-THINK 6:32 PM
+so, let's jump to where it's the computer's turn
+USER-THINK 6:33 PM
+great
+USER-THINK 6:34 PM
+ok. actually, we want the computer to play a turn right after the player
+USER-THINK 6:34 PM
+so this is where we want to start
+USER-THINK 6:35 PM
+go ahead
+LENOVO-PC 6:35 PM
+make a new method for randomizing
+USER-THINK 6:35 PM
+we don't have to 
+USER-THINK 6:35 PM
+not yet
+USER-THINK 6:35 PM
+well you can if you want
+USER-THINK 6:35 PM
+yeah that's good
+LENOVO-PC 6:36 PM
+should we return a button
+USER-THINK 6:36 PM
+so when you have a biig problem, with uncertain solution, start with the simplest thing you can do
+USER-THINK 6:36 PM
+basically, before you go random
+USER-THINK 6:37 PM
+make the computer always play the middle spot
+USER-THINK 6:37 PM
+how would you do that ?
+USER-THINK 6:38 PM
+I'll show you how now
+USER-THINK 6:39 PM
+you want to go ahead and do it ?
+USER-THINK 6:42 PM
+yeah
+USER-THINK 6:42 PM
+that's what you're missing
+USER-THINK 6:42 PM
+working ?
+LENOVO-PC 6:43 PM
+no
+USER-THINK 6:43 PM
+let me see
+USER-THINK 6:51 PM
+how is that ?
+LENOVO-PC 6:52 PM
+last one didnt register
+USER-THINK 6:52 PM
+hmm..
+USER-THINK 6:52 PM
+let me see
+USER-THINK 6:54 PM
+so the last button is problematic for the player
+LENOVO-PC 6:54 PM
+yeah
+USER-THINK 6:55 PM
+ok this is where we want to do debugging
+LENOVO-PC 6:55 PM
+we need draw option
+USER-THINK 6:59 PM
+basically what's happening is the computer couldn't find an empty spot
+USER-THINK 6:59 PM
+so it's looping
+USER-THINK 7:00 PM
+ahh I know the simplest solution
+USER-THINK 7:01 PM
+lol
+LENOVO-PC 7:02 PM
+can we see if both lose
+USER-THINK 7:02 PM
+a draw
+USER-THINK 7:02 PM
+yeah
+USER-THINK 7:02 PM
+there is no code for that yet
+USER-THINK 7:02 PM
+you have a draw when emptySpots is 0
+USER-THINK 7:02 PM
+the code isn't right still
+LENOVO-PC 7:03 PM
+the computer does an additional move when all buttons are used
+USER-THINK 7:03 PM
+yeah
+USER-THINK 7:04 PM
+that's ok
+USER-THINK 7:04 PM
+only a little bit more
+LENOVO-PC 7:05 PM
+we have run out of time can we do the last lot next wek
+LENOVO-PC 7:05 PM
+week
+USER-THINK 7:05 PM
+just 1 or 2 more lines I think
+LENOVO-PC 7:05 PM
+ok
+USER-THINK 7:08 PM
+that's ok
+LENOVO-PC 7:08 PM
+awesome!
+USER-THINK 7:08 PM
+but something is wrong when you won and go to the next round
+USER-THINK 7:08 PM
+we need to reset whose turn it is
+LENOVO-PC 7:08 PM
+ok
+USER-THINK 7:09 PM
+that's it !
+LENOVO-PC 7:10 PM
+do you know what is wrong with recceiving sound on your end
+LENOVO-PC 7:10 PM
+with teamviewer
+USER-THINK 7:10 PM
+actually I can hear you fine
+LENOVO-PC 7:10 PM
+i dont hear you
+USER-THINK 7:10 PM
+and my mic audio input is detecte
+USER-THINK 7:10 PM
+I can see the level go up and down when I speak
+LENOVO-PC 7:11 PM
+dont hear anything
+USER-THINK 7:11 PM
+but somehow it doesn't get across to you
+USER-THINK 7:11 PM
+we can try Skype next time if you want
+LENOVO-PC 7:11 PM
+this is fine 
+USER-THINK 7:12 PM
+it is one of the challenges with remote learning 
+LENOVO-PC 7:12 PM
+I'll test the game a little bit
+USER-THINK 7:12 PM
+ok
+USER-THINK 7:12 PM
+try to make a backup
+USER-THINK 7:12 PM
+or commit to a repository first
+LENOVO-PC 7:13 PM
+could we test this with test code and put to repository next week
+USER-THINK 7:13 PM
+ok
+USER-THINK 7:13 PM
+same time as usual ?
+LENOVO-PC 7:13 PM
+will pay you after tut and maybe teamviewer will work next time
+LENOVO-PC 7:14 PM
+i'll test the sound on my machine as well with a game or something
+LENOVO-PC 7:14 PM
+same time
+LENOVO-PC 7:15 PM
+wait i need to copy the chat we have donein case for future reference
