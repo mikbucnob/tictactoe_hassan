@@ -180,7 +180,7 @@ namespace TicTacToeHassan
             // can put buttons in array
             //Initialize UI
             InitializeComponent();
-            Console.WriteLine("Hello testing github");
+            Console.WriteLine("Hello testing github by a second person");
             this.tableLayoutPanel1.Controls.Clear();
 
             player1ScoreTxt.Text = "0";
