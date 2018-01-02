@@ -10,19 +10,37 @@ using System.Windows.Forms;
 
 namespace TicTacToeHassan
 {
+
     public partial class GameScreen : Form
     {
         bool isComputerTurn = false;
-        Dictionary<Button,EventHandler> btns_evt_handlers = new Dictionary<Button, EventHandler>();
+        public Dictionary<Button,EventHandler> btns_evt_handlers = new Dictionary<Button, EventHandler>();
         //(different Buttons) key is unique and EventHandler is a delegate points to same method(not unique)
 
         List<int[]> winningCombos;
-        int emptySpots;
+        public int emptySpots;
         int player_score;
         int computer_score;
 
+        public int Player_score { get => player_score; set => player_score = value; }
+        public int Computer_score { get => computer_score; set => computer_score = value; }
 
-        private Button RandomComputerChoice()
+        public void testFirstRound()
+        {
+            clear_board();
+            Button btn = btns[0]; //getting the top left btn
+
+            btn.Invoke(btns_evt_handlers[btn]); //emulate a click on the top-left btn
+
+            if (btn.Text != "O")
+            {
+                throw new Exception("error");
+
+            }
+
+        }
+
+        public Button RandomComputerChoice()
         {
             Random a = new Random();
             int randomChoice = a.Next(0, 8);
@@ -38,9 +56,9 @@ namespace TicTacToeHassan
 
         private void play_a_turn(object sender, EventArgs e)
         {
-            Console.WriteLine("You played a turn");
+            
             Button btn = sender as Button;//cast sender as button if btn is anything else than button null is used
-            if(isComputerTurn) //computer always X
+            if(isComputerTurn==false) //player always X
             {
                 btn.ForeColor = System.Drawing.Color.Red;
                 btn.Text = "X";
@@ -48,11 +66,15 @@ namespace TicTacToeHassan
                 emptySpots--;
                 
                 isComputerTurn = !isComputerTurn;
-                //btn.Enabled = false;
-                //btn.Anchor 
-                //isComputerTurn = false;
+
+                if (emptySpots > 0)
+                {
+                    btn = RandomComputerChoice();
+                    btn.Invoke(btns_evt_handlers[btn]);
+                }
+
             }
-            else //player's turn
+            else //computer's turn
             {
 
                 btn.ForeColor = System.Drawing.Color.Lime;
@@ -62,11 +84,7 @@ namespace TicTacToeHassan
 
                 isComputerTurn = !isComputerTurn;
 
-                if (emptySpots > 0)
-                {
-                    btn = RandomComputerChoice();
-                    btn.Invoke(btns_evt_handlers[btn]);
-                }
+               
                 // btn.Enabled = false;
                 //isComputerTurn = true;
             }
@@ -81,7 +99,7 @@ namespace TicTacToeHassan
                 int Index1 = winningCombo[0];
                 int Index2 = winningCombo[1];
                 int Index3 = winningCombo[2];
-                if (btns[Index1].Text == "O" && btns[Index2].Text == "O" && btns[Index3].Text == "O")
+                if (btns[Index1].Text == "X" && btns[Index2].Text == "X" && btns[Index3].Text == "X")
                 {
                     Console.WriteLine("Player won ! " + Index1 + Index2 + Index3);
                     player_won = true;
@@ -97,7 +115,7 @@ namespace TicTacToeHassan
                     int Index1 = winningCombo[0];
                     int Index2 = winningCombo[1];
                     int Index3 = winningCombo[2];
-                    if (btns[Index1].Text == "X" && btns[Index2].Text == "X" && btns[Index3].Text == "X")
+                    if (btns[Index1].Text == "O" && btns[Index2].Text == "O" && btns[Index3].Text == "O")
                     {
                         Console.WriteLine("Computer won ! " + Index1 + Index2 + Index3);
                         computer_won = true;
@@ -108,9 +126,9 @@ namespace TicTacToeHassan
 
             if(player_won)
             {
-                player_score++;
+                Player_score++;
                 MessageBox.Show("Player Won !");
-                player1ScoreTxt.Text = "" + player_score;
+                player1ScoreTxt.Text = "" + Player_score;
 
                 clear_board();
             }else if (computer_won)
@@ -147,7 +165,7 @@ namespace TicTacToeHassan
 
                     btns[i].AutoSize = true;
                     btns[i].Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    btns[i].ForeColor = System.Drawing.Color.Red;
+                    //btns[i].ForeColor = System.Drawing.Color.Red;
                     btns[i].Location = new System.Drawing.Point(330, 3);
                     btns[i].Size = new System.Drawing.Size(321, 243);
                     btns[i].TabIndex = 1 + i;
@@ -159,6 +177,7 @@ namespace TicTacToeHassan
                 }
             }
         }
+
 
         public GameScreen()
         {
@@ -174,23 +193,20 @@ namespace TicTacToeHassan
             winningCombos.Add(new int[] { 0, 4, 8 }); //048 - 7
             winningCombos.Add(new int[] { 2, 4, 6 }); //246 - 8 (there should be 8
 
-            player_score = 0;
+            Player_score = 0;
             computer_score = 0;
 
             // can put buttons in array
             //Initialize UI
             InitializeComponent();
-            Console.WriteLine("Hello testing github by a second person");
+            
             this.tableLayoutPanel1.Controls.Clear();
 
             player1ScoreTxt.Text = "0";
             player2ScoreTxt.Text = "0";
 
             clear_board();
-
             
-
-
             //Start the Game
 
             this.btn2.ForeColor = System.Drawing.Color.Blue;
@@ -206,19 +222,19 @@ namespace TicTacToeHassan
             //this.btn8.Text = "";
             //this.btn9.Text = "";
 
-            Boolean keepPlaying = true;
-            while (keepPlaying)
-            {
-                // clear all boxes..
-                // reset color to black
+            //Boolean keepPlaying = true;
+            //while (keepPlaying)
+            //{
+            //    // clear all boxes..
+            //    // reset color to black
 
-                //check for winners /losers
-                //keep track of score
-                keepPlaying = false;
+            //    //check for winners /losers
+            //    //keep track of score
+            //    keepPlaying = false;
 
-            }
-            Console.WriteLine("Thank you for playing");
+            //}
+            //Console.WriteLine("Thank you for playing");
         }
-
+        
     }
 }
