@@ -24,21 +24,7 @@ namespace TicTacToeHassan
 
         public int Player_score { get => player_score; set => player_score = value; }
         public int Computer_score { get => computer_score; set => computer_score = value; }
-
-        public void testFirstRound()
-        {
-            clear_board();
-            Button btn = btns[0]; //getting the top left btn
-
-            btn.Invoke(btns_evt_handlers[btn]); //emulate a click on the top-left btn
-
-            if (btn.Text != "O")
-            {
-                throw new Exception("error");
-
-            }
-
-        }
+              
 
         public Button RandomComputerChoice()
         {
@@ -165,7 +151,6 @@ namespace TicTacToeHassan
 
                     btns[i].AutoSize = true;
                     btns[i].Font = new System.Drawing.Font("Arial", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    //btns[i].ForeColor = System.Drawing.Color.Red;
                     btns[i].Location = new System.Drawing.Point(330, 3);
                     btns[i].Size = new System.Drawing.Size(321, 243);
                     btns[i].TabIndex = 1 + i;
@@ -209,8 +194,7 @@ namespace TicTacToeHassan
             
             //Start the Game
 
-            this.btn2.ForeColor = System.Drawing.Color.Blue;
-            this.btn1.ForeColor = System.Drawing.Color.Black;
+           
             //array avoids this
             //this.btn1.Text = "";
             //this.btn2.Text = "";
