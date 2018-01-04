@@ -50,7 +50,7 @@ namespace TicTacToeHassan
                 btn.Text = "X";
                 btn.Click -= btns_evt_handlers[btn];
                 emptySpots--;
-                
+
                 isComputerTurn = !isComputerTurn;
 
                 if (emptySpots > 0)
@@ -62,7 +62,7 @@ namespace TicTacToeHassan
             }
             else //computer's turn
             {
-
+                
                 btn.ForeColor = System.Drawing.Color.Lime;
                 btn.Text = "O";
                 btn.Click -= btns_evt_handlers[btn];
@@ -127,7 +127,6 @@ namespace TicTacToeHassan
                 clear_board();
             }else if(emptySpots == 0)
             {
-
                 MessageBox.Show("A Draw !");
                 clear_board();
             }
@@ -205,19 +204,7 @@ namespace TicTacToeHassan
             //this.btn7.Text = "";
             //this.btn8.Text = "";
             //this.btn9.Text = "";
-
-            //Boolean keepPlaying = true;
-            //while (keepPlaying)
-            //{
-            //    // clear all boxes..
-            //    // reset color to black
-
-            //    //check for winners /losers
-            //    //keep track of score
-            //    keepPlaying = false;
-
-            //}
-            //Console.WriteLine("Thank you for playing");
+            
         }
         
     }
